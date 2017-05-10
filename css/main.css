@@ -98,10 +98,13 @@ textarea {
 .tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
 .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
-.tg .tg-9hbo{font-weight:bold;vertical-align:top}
-.tg .tg-4eph{background-color:#f9f9f9}
-.tg .tg-b7b8{background-color:#f9f9f9;vertical-align:top}
-.tg .tg-yw4l{vertical-align:top}
+.tg .vm-th{font-weight:bold;vertical-align:top}
+.tg .vm-name{background-color:#f9f9f9; font-weight: bold;}
+.tg .vm-desc{background-color:#f9f9f9;vertical-align:top}
+.tg .vm-cell{vertical-align:top}
+.tg .poweroff{background-color: #222; color: white}
+.tg .running{background-color: #99ff99;}
+.tg .paused{background-color: #ddaa00;}
 
 
 
