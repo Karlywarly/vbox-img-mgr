@@ -1,0 +1,88 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>VM Manager</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <h1>Virtual Manager Manager</h1>
+        <p>Enter the address of your vm host <input type="text" size="20" id="host-name" /> and press <button onclick="startVMManager()">Start VMManager</button>
+        <table class="mainTable">
+            <tr>
+                <th class="vm-th">Description</th>
+                <th class="vm-th">Web Address</th>
+                <th class="vm-th">Credentials</th>
+                <th class="vm-th">SSH Access</th>
+                <th class="vm-th">SFTP Access</th>
+                <th class="vm-th">VNC Access</th>
+                <th class="vm-th">Status</th>
+            </tr>
+            <tr class="upper-border">
+                <td class="vm-cell host-name" rowspan="2">(Host)</td>
+                <td class="vm-cell host-desc" colspan="3"></td>
+                <td class="vm-cell host-stats" colspan="3">
+                    <span id="host-cpu"></span>&nbsp;&nbsp;&nbsp;<span id="host-ram"></span>
+                </td>
+            </tr>
+            <tr class="host-links-row">
+                <td class="vm-cell vm-web"></td>
+                <td class="vm-cell vm-cred"></td>
+                <td class="vm-cell vm-ssh"></td>
+                <td class="vm-cell vm-ftp"></td>
+                <td class="vm-cell vm-vnc"></td>
+                <td class="vm-cell vm-state running">running</td>
+            </tr>  
+            <tr style="display:none" id="guest-description-row" class="upper-border template descRow">
+                <td class="vm-name" rowspan="3"></td>
+                    <td class="vm-desc" colspan="6"></td>
+            </tr>
+            <tr class="template linksRow" style="display:none" id="guest-links-row">
+                <td class="vm-cell vm-web"></td>
+                <td class="vm-cell vm-cred"></td>
+                <td class="vm-cell vm-ssh"></td>
+                <td class="vm-cell vm-ftp"></td>
+                <td class="vm-cell vm-vnc"></td>
+                <td class="vm-cell vm-state "></td>
+            </tr>
+            <tr class="template button-row" style="display:none" id="guest-button-row">
+                <td class="vm-cell vm-edit-ip "><input type="text" class="ip-edit" size="20"/></td>
+                <td class="vm-cell vm-edit-cred "><input type="text" class="cred-edit" size="20"/></td>
+                <td class="vm-cell vm-edit-button "><button class="vm-button edit-button" >Update</button></td>
+                <td class="vm-cell vm-spare2 "></td>
+                <td class="vm-cell vm-stop "><button class="vm-button stop-button"  style="float: right" >Stop</button></td>
+                <td class="vm-cell vm-start">
+                    <button style="display:block" class="vm-button start-button" >Start</button> 
+                    <button style="display:none" class="vm-button resume-button" >Resume</button>
+                    <button style="display:none" class="vm-button pause-button"  >Pause</button>                    
+                </td>
+            </tr>
+        </table>
+        <p>Or, enter any vboxmanage arguments here: <input type="text" size="40" id="arbitrary"/>&nbsp;<button onClick="arbitrary()">Run!</button>
+        <div id="results">
+            <h2>Command Output</h2>
+            <pre></pre>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>');</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+    </body>
+</html>

@@ -149,8 +149,8 @@ foreach (file('http://localhost/~karl/cgi-bin/vbox.cgi?list%20vms') as $line) {
                         <td class="vm-cell vm-state <?php echo $state; ?>"><?php echo $state; ?></td>
                     </tr>
                     <tr>
-                        <td class="vm-cell vm-button vm-none "><input type="text" class="ip-<?php echo $name ?>" size="20"></button></td>
-                        <td class="vm-cell vm-button vm-none "><input type="text" class="cred-<?php echo $name ?>" size="30"></button></td>
+                        <td class="vm-cell vm-button vm-none "><input type="text" class="ip-<?php echo $name ?>" size="20"></input></td>
+                        <td class="vm-cell vm-button vm-none "><input type="text" class="cred-<?php echo $name ?>" size="30"></input></td>
                         <td class="vm-cell vm-button vm-none "><button class="<?php echo $name ?>" onClick="editProps('<?php echo $name ?>');">Update</button></td>
                         <td class="vm-cell vm-button vm-none "></td>
                         <td class="vm-cell vm-button vm-stop "><button class="<?php echo $name ?>"  style="float: right" onClick="control('stop', '<?php echo $name ?>');">Stop</button></td>
