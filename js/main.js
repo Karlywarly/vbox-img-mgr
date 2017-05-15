@@ -1,3 +1,21 @@
+/*
+ * The following code relies on the existence and correct functioning of a
+ * CGI script implementing logic similar to the following:
+ 
+#!/bin/bash
+set -f
+echo "Content-Type: text/plain"
+echo
+
+args=$(echo $QUERY_STRING | sed "s/%20/ /g")
+VBoxManage $args 2>&1
+
+ * (You may cut and paste above code if required into a file) - the filename
+ * and location should be set to match the location shown below
+ */
+
+const CGI = '/~karl/cgi-bin/vbox.cgi'; // path to your vboxmanage cgi script
+
 // constants for the vboxmanage commands
 const HOSTINFO = 'list hostinfo';
 const GLOBALEXTRAS = 'getextradata global enumerate';
@@ -39,10 +57,6 @@ const CPUIDLE = 'CPU/Load/Idle:avg';
 const RAMTOTAL = 'RAM/Usage/Total:avg';
 const RAMUSED = 'RAM/Usage/Used:avg';
 const RAMFREE = 'RAM/Usage/Free:avg';
-
-const CGI = '/~karl/cgi-bin/vbox.cgi'; // path to your vboxmanage cgi script
-const STARTSRV = 'vboxwebsrv';  // special command to start vboxwebsrv
-const PHPVIRTUALBOX = "/virtualbox"; // path to your phpvirtualbox installation
 
 const NOTSET = 'n/a';
 
@@ -114,7 +128,7 @@ function control(command, machine) {
 function arbitrary() {
     arg = $('#arbitrary').val();
     if (typeof arg !== 'undefined' && arg !== null) {
-        $.get({ url: 'cgi-bin/vbox.cgi/',
+        $.get({ url: url,
                 data: encodeURI(arg),
                 success: function(data) {
                     $('#results pre').text(data);
@@ -191,7 +205,7 @@ function populateHostRow() {
     let vnclink = '<a href="' + vnc + '">' + vnc + '</a>';
     // Link fields
     $('tr.host-links-row td.vm-web').html(weblink);
-    $('tr.host-links-row td.vm-cred').text(user + '/??????' );
+    $('tr.host-links-row td.vm-cred').text(user + '/********' );
     $('tr.host-links-row td.vm-ssh').html(sshlink);
     $('tr.host-links-row td.vm-ftp').html(ftplink);
     $('tr.host-links-row td.vm-vnc').html(vnclink);
@@ -356,18 +370,6 @@ function editProps(name) {
     }
 }
 
-function startPHPvb() {
-    $.get({
-        url: url,
-        data: 'startvboxsrv',
-        success: function(data) {
-            alert(data);
-            window.open('virtualbox');
-        },
-        dataType: 'text'
-    });
-}
-
 function showState(machine,state) {
     if (typeof state === 'undefined' ) {
         state = 'unknown';
@@ -432,9 +434,9 @@ function showHostStats() {
     let ramWarn = NORMAL;
     percent = parseInt(hostStats[RAMFREE],10);
     if (percent < 20) {
-        cpuWarn = ALERT;
+        ramWarn = ALERT;
     } else if (percent < 40) {
-        cpuWarn = WARNING;
+        ramWarn = WARNING;
     }
     $('#host-cpu').removeClass(NORMAL + ' ' + ALERT + ' ' + WARNING )
             .addClass(cpuWarn)
